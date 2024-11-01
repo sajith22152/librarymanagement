@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="si">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>පුස්තකාල කළමනාකරණ පද්ධතිය</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-book-reader"></i> පුස්තකාල කළමනාකරණ පද්ධතිය</h1>
+        </header>
+
+        <div id="messageBox" class="message-box"></div>
+
+        <div class="main-content">
+            <div class="form-section">
+                <form id="acquisitionForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="acquisitionNumber">පරිග්‍රහණ අංකය:</label>
+                            <input type="text" id="acquisitionNumber" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dateEntry">ප්‍රවේශ දිනය:</label>
+                            <input type="date" id="dateEntry" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="classNumber">වර්ග අංකය:</label>
+                            <input type="text" id="classNumber" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="bookTitle">ග්‍රන්ථ නාමය:</label>
+                            <input type="text" id="bookTitle" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="publisher">ප්‍රකාශක:</label>
+                            <input type="text" id="publisher" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="publicationDate">ප්‍රකාශන දිනය:</label>
+                            <input type="date" id="publicationDate" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="pages">පිටු ගණන:</label>
+                            <input type="number" id="pages" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="price">මිල:</label>
+                            <input type="number" id="price" step="0.01" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="medium">මාධ්‍යය:</label>
+                            <select id="medium" required>
+                                <option value="">තෝරන්න</option>
+                                <option value="printed">මුද්‍රිත</option>
+                                <option value="digital">ඩිජිටල්</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dateReturn">ආපසු භාරදීමේ දිනය:</label>
+                            <input type="date" id="dateReturn">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="studentName">සිසුවාගේ නම:</label>
+                            <input type="text" id="studentName">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="studentClass">සිසුවාගේ පන්තිය:</label>
+                            <input type="text" id="studentClass">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="borrowDate">ණයට ගත් දිනය:</label>
+                            <input type="date" id="borrowDate">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="dueDate">නැවත භාරදිය යුතු දිනය:</label>
+                            <input type="date" id="dueDate">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="notes">සටහන්:</label>
+                            <textarea id="notes" rows="3"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="button-group">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> සුරකින්න
+                        </button>
+                        <button type="reset" class="btn btn-secondary">
+                            <i class="fas fa-undo"></i> යළි පිරවීම
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="actions-section">
+                <div class="search-box">
+                    <input type="text" id="searchBox" placeholder="සොයන්න..." oninput="searchRecords()">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+
+                <div class="action-buttons">
+                    <button onclick="backupData()" class="btn btn-info">
+                        <i class="fas fa-download"></i> Backup ගන්න
+                    </button>
+                    <label class="btn btn-info">
+                        <i class="fas fa-upload"></i> Backup පිහිටුවන්න
+                        <input type="file" id="restoreFile" accept=".json" onchange="restoreData(event)" style="display: none;">
+                    </label>
+                    <button onclick="printRecords()" class="btn btn-success">
+                        <i class="fas fa-print"></i> මුද්‍රණය කරන්න
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>පරිග්‍රහණ අංකය</th>
+                            <th>ග්‍රන්ථ නාමය</th>
+                            <th>ප්‍රකාශක</th>
+                            <th>මිල</th>
+                            <th>සිසුවාගේ නම</th>
+                            <th>ණයට ගත් දිනය</th>
+                            <th>නැවත භාරදිය යුතු දිනය</th>
+                            <th>ක්‍රියා</th>
+                        </tr>
+                    </thead>
+                    <tbody id="acquisitionTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
+</body>
+</html>
